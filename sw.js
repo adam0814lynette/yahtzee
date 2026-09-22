@@ -1,4 +1,4 @@
-const CACHE = 'minimalist-yahtzee-v1';
+const CACHE = 'minimalist-yahtzee-v2';
 const ASSETS = ['./', 'index.html', 'tailwind.css', 'styles.css', 'app.js', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', event => {
