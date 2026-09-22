@@ -1,0 +1,2 @@
+# yahtzee
+Yahtzee style game
