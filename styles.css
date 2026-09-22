@@ -1,0 +1,134 @@
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overscroll-behavior-y: contain; -webkit-tap-highlight-color: transparent; background: #d7dfd3; }
+        #app { background:
+            radial-gradient(circle at top left, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0) 34%),
+            linear-gradient(180deg, #fffdf7 0%, #f5f1e8 100%);
+        }
+        .table-surface {
+            background:
+                radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.42), transparent 18%),
+                radial-gradient(circle at 82% 0%, rgba(191, 167, 108, 0.24), transparent 24%),
+                linear-gradient(145deg, #fffaf0 0%, #edf2e9 58%, #d9e4d6 100%);
+            position: relative;
+            isolation: isolate;
+        }
+        .table-surface::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(30, 64, 49, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 64, 49, 0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.1) 62%, transparent);
+        }
+        .title-card {
+            background: rgba(255, 253, 247, 0.72);
+            border: 1px solid rgba(81, 108, 88, 0.18);
+            box-shadow: 0 20px 45px rgba(28, 50, 38, 0.12);
+            backdrop-filter: blur(12px);
+        }
+        .title-mark {
+            background: linear-gradient(180deg, #172019 0%, #314936 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 12px 30px rgba(29, 49, 37, 0.16);
+        }
+        .title-die {
+            background:
+                radial-gradient(circle at 30% 24%, rgba(255,255,255,0.95), rgba(255,255,255,0) 32%),
+                linear-gradient(145deg, #ffffff 0%, #f7f1e4 58%, #d5c8a8 100%);
+            border: 1px solid rgba(58, 66, 54, 0.18);
+            box-shadow: 0 13px 22px rgba(40, 50, 36, 0.18), inset 0 -6px 12px rgba(88, 70, 42, 0.08);
+        }
+        .control-panel {
+            background: rgba(255, 253, 247, 0.86);
+            border: 1px solid rgba(81, 108, 88, 0.16);
+            box-shadow: 0 16px 32px rgba(46, 66, 50, 0.10);
+            backdrop-filter: blur(10px);
+        }
+        .primary-action {
+            background: linear-gradient(135deg, #111827 0%, #263d2f 100%);
+            box-shadow: 0 12px 24px rgba(17, 24, 39, 0.22), inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+        .secondary-action {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 5px 14px rgba(30, 41, 59, 0.06);
+        }
+        .score-row { box-shadow: inset 0 1px 0 rgba(255,255,255,0.54); }
+        .dice-tray {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,247,239,0.98)),
+                linear-gradient(90deg, rgba(38, 61, 47, 0.06), transparent, rgba(181, 153, 86, 0.08));
+        }
+        .die-dot { background-color: #0f172a; border-radius: 50%; width: 8px; height: 8px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.26); }
+        .die {
+            background:
+                radial-gradient(circle at 30% 24%, rgba(255,255,255,0.95), rgba(255,255,255,0) 32%),
+                linear-gradient(145deg, #ffffff 0%, #f8f4eb 54%, #ddd4bd 100%);
+            border-color: rgba(71, 85, 105, 0.28);
+            box-shadow: 0 8px 15px rgba(15, 23, 42, 0.13), inset 0 -5px 10px rgba(96, 77, 48, 0.08);
+            transition: transform 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .die.held { background-color: #e5efe3; border: 2px solid #446a4f; transform: translateY(4px); box-shadow: 0 3px 8px rgba(20, 83, 45, 0.22), inset 0 0 0 2px rgba(255,255,255,0.62); }
+        .die.rolling { animation: shake 0.28s infinite; }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            25% { transform: translate(-1px, -2px) rotate(-3deg); }
+            50% { transform: translate(-3px, 0px) rotate(3deg); }
+            75% { transform: translate(2px, 2px) rotate(-1deg); }
+            100% { transform: translate(1px, -1px) rotate(0deg); }
+        }
+        body.dark-mode,
+        body.dark-mode.bg-slate-100 { background-color: #050509 !important; color: #f8fafc; }
+        body.dark-mode #app,
+        body.dark-mode #setup-screen,
+        body.dark-mode #game-screen,
+        body.dark-mode #game-over-screen,
+        body.dark-mode header,
+        body.dark-mode footer { background-color: #050509; color: #f8fafc; }
+        body.dark-mode main { background-color: #050509; }
+        body.dark-mode .bg-white { background-color: #11111a !important; color: #f8fafc; }
+        body.dark-mode .bg-slate-100 { background-color: #161625 !important; }
+        body.dark-mode .bg-slate-200 { background-color: #2a2a3a !important; }
+        body.dark-mode .bg-slate-700,
+        body.dark-mode .bg-slate-950 { background-color: #facc15 !important; color: #050509 !important; }
+        body.dark-mode .bg-blue-50 { background-color: #14102b !important; }
+        body.dark-mode .bg-blue-700 { background-color: #39ff14 !important; color: #050509 !important; }
+        body.dark-mode .bg-rose-100 { background-color: #2d0a22 !important; }
+        body.dark-mode .table-surface,
+        body.dark-mode .control-panel,
+        body.dark-mode .title-card,
+        body.dark-mode .dice-tray { background: #050509 !important; border-color: #3b3b56 !important; box-shadow: none; }
+        body.dark-mode .table-surface::before { display: none; }
+        body.dark-mode .title-mark { background: none; color: #f8fafc; text-shadow: 0 0 18px rgba(0, 229, 255, 0.42); }
+        body.dark-mode .title-die { background: #f8fafc !important; border-color: #00e5ff !important; box-shadow: 0 0 14px rgba(0, 229, 255, 0.35); }
+        body.dark-mode .text-slate-400 { color: #a8b3cf !important; }
+        body.dark-mode .text-slate-500,
+        body.dark-mode .text-slate-600 { color: #c4ff3d !important; }
+        body.dark-mode .text-slate-900,
+        body.dark-mode .text-slate-950 { color: #f8fafc !important; }
+        body.dark-mode .text-blue-700,
+        body.dark-mode .text-blue-800 { color: #00e5ff !important; }
+        body.dark-mode .text-rose-800 { color: #ff4fd8 !important; }
+        body.dark-mode .text-green-700 { color: #39ff14 !important; }
+        body.dark-mode .border-slate-200,
+        body.dark-mode .border-slate-300,
+        body.dark-mode .border-slate-500 { border-color: #3b3b56 !important; }
+        body.dark-mode .border-blue-300,
+        body.dark-mode .border-blue-500 { border-color: #00e5ff !important; }
+        body.dark-mode input,
+        body.dark-mode select,
+        body.dark-mode button { color: #f8fafc; }
+        body.dark-mode input,
+        body.dark-mode select { background-color: #11111a !important; border-color: #3b3b56 !important; }
+        body.dark-mode button.bg-white { border-color: #ff4fd8 !important; }
+        body.dark-mode .die { background-color: #f8fafc !important; border-color: #00e5ff !important; box-shadow: 0 0 12px rgba(0, 229, 255, 0.22); }
+        body.dark-mode .die-dot { background-color: #050509; }
+        body.dark-mode .die.held { background-color: #ff4fd8 !important; border-color: #facc15 !important; box-shadow: 0 0 16px rgba(255, 79, 216, 0.45); }
+        body.dark-mode .die.held .die-dot { background-color: #050509; }
+        body.dark-mode #roll-btn,
+        body.dark-mode #game-over-screen button,
+        body.dark-mode #setup-screen button[onclick="startGame()"] { background: #facc15 !important; color: #050509 !important; }
+        body.dark-mode #rolls-left { background-color: #050509 !important; color: #facc15 !important; border: 1px solid #facc15; }
+        ::-webkit-scrollbar { width: 0px; background: transparent; }

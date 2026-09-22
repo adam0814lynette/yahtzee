@@ -1,0 +1,46 @@
+# Minimalist Yahtzee — Development Handoff
+
+## Project at a glance
+
+Minimalist Yahtzee is a static, installable web app for phones. It supports one to four seats, local pass and play, AI opponents, dark mode, saved games, and score undo. There is no build step, package manager, or server component in this directory.
+
+## Files
+
+- `index.html` — setup, game, and results screens.
+- `app.js` — dice, turns, scoring, AI, saved games, and UI updates.
+- `styles.css` — custom light and dark themes, table, dice, and animations.
+- `tailwind.css` — local compiled utility styles used by the HTML and generated score rows.
+- `manifest.webmanifest` — install name, start path, colors, and icons.
+- `sw.js` — offline app shell cache.
+- `icon.svg`, `icon-192.png`, `icon-512.png` — install icons.
+
+## Game behavior
+
+Players get up to three rolls per turn and may hold individual dice between rolls. Each player fills the 13 standard categories: Ones through Sixes, three and four of a kind, full house, small and large straights, Yahtzee, and chance. An upper section total of at least 63 earns a 35 point bonus. Additional Yahtzees after a scored 50 point Yahtzee earn 100 points when scored in another category. The game ranks players by total score after round 13.
+
+Setup supports one to four players and a human or AI type for each seat. The Pass and Play and Vs AI buttons apply quick presets. The AI rolls, holds matching dice, and selects an open score category automatically. Undo restores up to ten prior human scoring decisions. Dark mode is a separate saved preference.
+
+## Conversion from the single HTML file
+
+This directory was created from `../minimalist_yahtzee.html`. The game logic and UI behavior were preserved while its inline CSS and JavaScript were moved into separate files. The original Tailwind CDN dependency was replaced with a local generated stylesheet, so the installed game has no external runtime dependency. A manifest, service worker, and local icons were added for installation and offline loading. The original single file remains available as a reference.
+
+The existing browser storage keys are retained: `minimalist-yahtzee-state-v2` for the active game and `minimalist-yahtzee-dark-mode` for the theme. Storage is scoped to the site's origin. Hosting this version on the same origin lets it use an existing saved game; moving to a new domain does not transfer browser storage automatically.
+
+## Running and installing
+
+Serve this directory over localhost for development or HTTPS for phone installation. For example:
+
+```sh
+cd yahtzee
+python3 -m http.server 8000
+```
+
+Open `http://localhost:8000/` on the development computer. To install on a phone, publish the contents of this directory at an HTTPS URL, open that URL in the phone browser, and use the browser's Add to Home Screen or Install app action. All asset paths are relative, so the app can also be hosted below a site subdirectory. Opening `index.html` directly as a `file:` URL can test gameplay but does not enable service workers or installation.
+
+## Testing and future changes
+
+The workspace test is `../tests/yahtzee.spec.js`. Run it from the workspace root with `npx playwright test tests/yahtzee.spec.js`. It covers solo and AI play, scoring and undo, save and resume, dark mode, compact phone layout, and an offline reload through the service worker.
+
+When changing cached files, increment `CACHE` in `sw.js` and keep `ASSETS` in sync with the app files. The current service worker caches the app shell during installation and serves those cached files offline. The local `tailwind.css` is compiled CSS; if new utility classes are added to the markup or generated HTML, their rules must also be added to that stylesheet or replaced with rules in `styles.css`.
+
+This document should be updated as game rules, behavior, assets, or deployment requirements change.
